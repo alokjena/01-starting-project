@@ -1,36 +1,21 @@
-//Object destructuring way of using CoreConcepts component
-export default function CoreConcepts({image, title, description}) {
+import { CORE_CONCEPTS } from "../data.js";
+import CoreConcept from "./CoreConcept.jsx";
+export default function CoreConcepts() {
   return (
-   <li>
-    <img src={image} alt="..." />
-    <h3>{title}</h3>
-    <p>{description}</p>
-   </li>
+    <section id="core-concepts">
+      <h2>Core concepts</h2>
+      <ul>
+        {CORE_CONCEPTS.map((conceptItem) => (
+          <CoreConcept key={conceptItem.title} {...conceptItem} />
+        ))}
+
+        {/* <CoreConcepts title={CORE_CONCEPTS[0].title}
+                    description={CORE_CONCEPTS[0].description}
+                    image={CORE_CONCEPTS[0].image} />
+                    <CoreConcepts {...CORE_CONCEPTS[1]} />
+                    <CoreConceptsSingleProp concept={CORE_CONCEPTS[2]} />
+                    <CoreConceptsPropsWay {...CORE_CONCEPTS[3]} /> */}
+      </ul>
+    </section>
   );
-};
-
-//Props way of using CoreConcepts component
-export function CoreConceptsPropsWay(props) {
-  return (
-   <li>
-    <img src={props.image} alt="..." />
-    <h3>{props.title}</h3>
-    <p>{props.description}</p>
-   </li>
-  );
-};
-
-
-
-//Core concept single prop way of using CoreConcepts component
-export function CoreConceptsSingleProp({concept}) {
-     // Use concept.title, concept.description etc.
-   // Or destructure the concept object: const { title, description, image } = concept;
-  return (
-   <li>
-    <img src={concept.image} alt="..." />
-    <h3>{concept.title}</h3>
-    <p>{concept.description}</p>
-   </li>
-  );
-};
+}
